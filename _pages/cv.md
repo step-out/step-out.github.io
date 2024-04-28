@@ -40,7 +40,8 @@ Skills
 
 Detial
 =====
-* Click [here](https://step-out.github.io/files/ChengqianMa_s_Resume.pdf) for more.
+* Click [here](https://step-out.github.io/files/English_CV.pdf) for my English CV.
+* Click [here](https://step-out.github.io/files/Chinese_CV.pdf) for my Chinese CV.
 
 
 <!-- Publications
