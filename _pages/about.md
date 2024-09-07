@@ -22,8 +22,8 @@ I have a keen interest in data-centric AI. Apart from scientific research, my ho
 
 # Honor
 
-- Excellent Merit Students(2024)
-- Outstanding Merit Student(2023)
-- National Encouragement scholarship(2023)
-- Outstanding Merit Student(2022)
-- National Encouragement scholarship(2022)
+- ***Excellent Merit*** Students(2024)
+- ***Outstanding Merit*** Student(2023)
+- ***National Encouragement*** scholarship(2023)
+- ***Outstanding Merit*** Student(2022)
+- ***National Encouragement*** scholarship(2022)
