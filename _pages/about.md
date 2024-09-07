@@ -16,14 +16,14 @@ I have a keen interest in data-centric AI. Apart from scientific research, my ho
 
 # Prize
 
-- The <span style="color: red;">first prize</span>🏆(*top* *0.1%* *out* *of* *100,000* *participants*) at the national level in the Huawei ICT Competition(2024)
+- [The <span style="color: red;">first prize</span>🏆(*top* *0.1%* *out* *of* *100,000* *participants*)](https://cogsci.xmu.edu.cn/info/1022/5922.htm) at the national level in the Huawei ICT Competition(2024)
 - The <span style="color: blue;">Silver Award</span>🥈 in the Chinese Collegiate Programming Contest(2023)
 - The M Award (<span style="color: red;">International First Prize</span>🏆, *top* *5%*) in the Mathematical Contest in Modeling (MCM-ICM) for American College Students(2023)
 
 # Honor
 
-- ***Excellent Merit*** Students(2024)
-- ***Outstanding Merit*** Student(2023)
+- [***Excellent Merit*** Students(2024)](https://informatics.xmu.edu.cn/info/1077/40089.htm)
+- [***Outstanding Merit*** Student(2023)](https://informatics.xmu.edu.cn/info/1077/33019.htm)
 - ***National Encouragement*** scholarship(2023)
 - ***Outstanding Merit*** Student(2022)
 - ***National Encouragement*** scholarship(2022)
