@@ -12,7 +12,7 @@ redirect_from:
 
 I am a third-year undergraduate student majoring in [Artificial Intelligence at Xiamen University](https://cogsci.xmu.edu.cn/). 
 
-I have a keen interest in data-centric AI. Apart from scientific research, my hobbies include sports🏃‍💪🏊‍ and calligraphy 🖌.
+I have a keen interest in AI. Apart from scientific research, my hobbies include sports🏃‍💪🏊‍ and calligraphy 🖌.
 
 # Prize
 
