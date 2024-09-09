@@ -24,6 +24,4 @@ I have a keen interest in data-centric AI. Apart from scientific research, my ho
 
 - [***Excellent Merit*** Students(2024)](https://informatics.xmu.edu.cn/info/1077/40089.htm)
 - [***Outstanding Merit*** Student(2023)](https://informatics.xmu.edu.cn/info/1077/33019.htm)
-- ***National Encouragement*** scholarship(2023)
 - ***Outstanding Merit*** Student(2022)
-- ***National Encouragement*** scholarship(2022)
