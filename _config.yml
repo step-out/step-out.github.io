@@ -8,7 +8,7 @@
 
 # Basic Site Settings
 locale                   : "zh-CN"
-title                    : "Chengqian Ma / Personal Site"
+title                    : "马承乾"
 title_separator          : "-"
 name                     : &name "Chengqian Ma"
 description              : &description "A junior undergraduate student majoring in AI."
@@ -243,9 +243,9 @@ defaults:
       author_profile: true
       share: true
       comments: true
-  _publications
+  # _publications
   - scope:
-      path: "_publications/pub-1.md"
+      path: ""
       type: publications
     values:
       layout: single
