@@ -26,3 +26,8 @@ I have a keen interest in AI. Apart from scientific research, my hobbies include
 - [***Excellent Merit*** Students(2024)](https://informatics.xmu.edu.cn/info/1077/40089.htm)
 - [***Outstanding Merit*** Student(2023)](https://informatics.xmu.edu.cn/info/1077/33019.htm)
 - ***Outstanding Merit*** Student(2022)
+
+# Paper
+
+- [A prompt engineer to enhance Large Language Models ability](https://arxiv.org/abs/2408.01423) originated from undergraduate courses is accepted by <span style="color: blue;"> *ECAI-24 workshop* </span>.
+- [A survey](https://arxiv.org/abs/2502.08540) on Image Quality Assessment.
