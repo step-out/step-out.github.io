@@ -29,5 +29,5 @@ I have a keen interest in AI. Apart from scientific research, my hobbies include
 
 # Paper
 
-- [A prompt engineer to enhance Large Language Models ability](https://arxiv.org/abs/2408.01423) originated from undergraduate courses is accepted by <span style="color: blue;"> *ECAI-24 workshop* </span>.
+- [A toy prompt engineer to enhance Large Language Models ability](https://arxiv.org/abs/2408.01423) originated from undergraduate courses.
 - [A survey](https://arxiv.org/abs/2502.08540) on Image Quality Assessment. The chinese version in [here](https://zhuanlan.zhihu.com/p/25680975953).
