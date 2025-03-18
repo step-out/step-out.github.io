@@ -18,7 +18,7 @@ I have a keen interest in AI. Apart from scientific research, my hobbies include
 # Prize
 
 - [The <span style="color: red;">first prize</span>🏆(*top* *0.1%* *out* *of* *100,000* *participants*)](https://cogsci.xmu.edu.cn/info/1022/5922.htm) at the national level in the Huawei ICT Competition(2024)
-- The <span style="color: blue;">Silver Award</span>🥈 in the Chinese Collegiate Programming Contest(CCPC2023)
+- The <span style="color: blue;">Silver Award</span>🥈 in the Chinese Collegiate Programming Contest(ACM-CCPC2023)
 - The M Award (<span style="color: red;">International First Prize</span>🏆, *top* *5%*) in the Mathematical Contest in Modeling (MCM-ICM) for American College Students(2023)
 
 # Honor
