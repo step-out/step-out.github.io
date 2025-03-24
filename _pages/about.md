@@ -30,4 +30,4 @@ I have a keen interest in AI. Apart from scientific research, my hobbies include
 # Paper
 
 - [A toy prompt engineer to enhance Large Language Models ability](https://arxiv.org/abs/2408.01423) originated from undergraduate courses, it's accepted by ECAI-24 workshop.
-- [A survey](https://arxiv.org/abs/2502.08540) on Image Quality Assessment. The chinese version in [here](https://zhuanlan.zhihu.com/p/25680975953), the repository in [here](https://github.com/11xiaoyi11/IQA-Survey).
+- [A survey](https://arxiv.org/abs/2502.08540) on Image Quality Assessment. The chinese version in [here](https://zhuanlan.zhihu.com/p/25680975953) and [here](https://mp.weixin.qq.com/s/b62C0hd6DkCDaUqFIgTBng), the repository in [here](https://github.com/11xiaoyi11/IQA-Survey).
