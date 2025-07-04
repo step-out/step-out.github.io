@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chengqian Ma 马承乾</title>
+  <!-- 如果你用 Tailwind，记得引入 -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="photo/glass.svg">
+  <style>
+  @keyframes bounce-in-hover {
+    0%   { transform: scale(1);}
+    40%  { transform: scale(1.08);}
+    100% { transform: scale(1);}
+  }
+  .bounce-hover:hover {
+    animation: bounce-in-hover 0.5s;
+  }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-blue-200 font-sans">
+  <div class="container mx-auto px-4 py-8 max-w-6xl">
+    <!-- Header Section -->
+    <section class="mb-12" data-aos="fade-down">
+      <div class="overflow-hidden bg-white/90 rounded-3xl shadow-2xl border-0 p-2 md:p-4 flex flex-col items-center relative">
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-36 h-36 bg-gradient-to-tr from-blue-200 via-green-200 to-blue-100 rounded-full blur-2xl opacity-60 z-0"></div>
+        <div class="p-8 flex flex-col md:flex-row items-center gap-8 relative z-10">
+          <div class="w-32 h-32 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center shadow-lg ring-4 ring-blue-100">
+            <img src="photo/photo.jpg" alt="Dr. 张三" class="w-full h-full object-cover"/>
+          </div>
+          <div class="flex-1 text-center md:text-left">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-2 tracking-tight">马承乾 (Chengqian Ma)</h1>
+            <div class="text-lg text-blue-600 mb-4 font-semibold tracking-wide">Multimodal AI</div>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              A junior undergraduate student majoring in AI. 
+            </p>
+            <div class="flex flex-wrap justify-center md:justify-start gap-4 mt-2">
+              <a href="mailto:chengqianma@yeah.net" class="w-12 h-12 flex items-center justify-center rounded-full bg-blue-100 hover:bg-blue-200 transition-all duration-200 shadow" title="Email">
+                <img src="photo/email.svg" alt="Email" class="w-7 h-7"/>
+              </a>
+              <a href="https://github.com/step-out" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-full bg-blue-100 hover:bg-blue-200 transition-all duration-200 shadow" title="GitHub">
+                <img src="photo/GitHub.svg" alt="GitHub" class="w-7 h-7"/>
+              </a>
+              <a href="https://scholar.google.com/citations?user=cuUiimIAAAAJ" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-full bg-blue-100 hover:bg-blue-200 transition-all duration-200 shadow" title="Google Scholar">
+                <img src="photo/google-scholar.svg" alt="Google Scholar" class="w-7 h-7"/>
+              </a>
+            </div>
+            <!-- Friend Links Dropdown at top right -->
+            <div class="absolute right-6 bottom-6 md:right-8 md:bottom-8 z-50">
+              <div class="relative inline-block text-left">
+                <button id="friend-link-btn" type="button"
+                  class="inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-purple-50 focus:outline-none transition duration-200 ease-in-out"
+                  onclick="toggleFriendLinks()">
+                  Links
+                  <svg class="-mr-1 ml-2 h-5 w-5 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7l3-3 3 3m0 6l-3 3-3-3" />
+                  </svg>
+                </button>
+                <div id="friend-links-dropdown"
+                  class="fixed right-8 bottom-24 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 transition-all duration-300 hidden"
+                  style="transition-property: opacity, transform;">
+                  <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                    <a href="https://www.zhihu.com/people/k4mtz0" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">知乎主页</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Friend Links Dropdown -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="mb-12" data-aos="fade-up" data-aos-delay="50">
+      <h2 class="text-3xl font-bold text-blue-700 mb-6 flex items-center">
+        <span class="w-8 h-8 mr-3 text-blue-600">📰</span>News
+      </h2>
+      <div class="space-y-6">
+        <!-- News Item 1 -->
+        <div class="flex bg-white rounded-lg border border-blue-100 shadow-lg p-4 items-center gap-4">
+          <div class="w-24 h-24 flex-shrink-0 bg-gray-100 rounded overflow-hidden flex items-center justify-center">
+            <img src="photo/XMUover.jpg" alt="新闻图片1" class="object-cover w-full h-full"/>
+          </div>
+          <div class="flex-1">
+            <div class="text-lg font-bold">Graduated from Xiamen University</div>
+            <div class="text-gray-600 text-sm mb-1">2025-06-30</div>
+            <div class="text-gray-700">Graduated as outstanding student</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research Experience Section -->
+    <section class="mb-12" data-aos="fade-up" data-aos-delay="80">
+      <h2 class="text-3xl font-bold text-green-700 mb-6 flex items-center">
+        <span class="inline-block w-2 h-8 rounded bg-gradient-to-b from-blue-400 to-green-300 mr-3"></span>
+        <!-- <span class="w-8 h-8 text-green-600">🔗</span> -->
+        Research Experience
+      </h2>
+      <div class="space-y-6">
+        <!-- Experience 1: 本科 厦门大学 -->
+        <div class="flex bg-white rounded-lg border border-green-100 shadow-lg p-4 items-center gap-4">
+          <div class="w-20 h-20 flex-shrink-0 bg-gray-100 rounded overflow-hidden flex items-center justify-center">
+            <img src="photo/xmu-logo.svg" alt="厦门大学" class="object-contain w-full h-full"/>
+          </div>
+          <div class="flex-1">
+            <div class="text-lg font-bold">Bachelor, Xiamen University</div>
+            <div class="text-gray-600 text-sm mb-1">2021 - 2025</div>
+            <div class="text-gray-700">Major in AI</div>
+          </div>
+        </div>
+        <!-- Experience 2: 博士 北京大学 -->
+        <div class="flex bg-white rounded-lg border border-green-100 shadow-lg p-4 items-center gap-4">
+          <div class="w-20 h-20 flex-shrink-0 bg-gray-100 rounded overflow-hidden flex items-center justify-center">
+            <img src="photo/pku.png" alt="北京大学" class="object-contain w-full h-full"/>
+          </div>
+          <div class="flex-1">
+            <div class="text-lg font-bold">PhD candidate, Peking University</div>
+            <div class="text-gray-600 text-sm mb-1">2025 - Present</div>
+            <div class="text-gray-700">Major in AI</div>
+          </div>
+        </div>
+        <!-- Experience 3: 腾讯科研实习 -->
+        <div class="flex bg-white rounded-lg border border-green-100 shadow-lg p-4 items-center gap-4">
+          <div class="w-20 h-20 flex-shrink-0 bg-gray-100 rounded overflow-hidden flex items-center justify-center">
+            <img src="photo/Tencent.png" alt="腾讯" class="object-contain w-full h-full"/>
+          </div>
+          <div class="flex-1">
+            <div class="text-lg font-bold">Research Intern, Tencent</div>
+            <div class="text-gray-600 text-sm mb-1">2025 - Present</div>
+            <div class="text-gray-700">Researching mllm</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research Papers Section -->
+    <section class="mb-12" data-aos="fade-up" data-aos-delay="100">
+      <h2 class="text-3xl font-bold text-blue-700 mb-8 flex items-center gap-2">
+        <span class="inline-block w-2 h-8 rounded bg-gradient-to-b from-blue-400 to-blue-300 mr-3"></span>
+        <!-- <span class="w-8 h-8 text-green-600">🔗</span> -->
+        Academic Papers
+      </h2>
+      <div class="space-y-8">
+        <!-- Paper 1 -->
+        <div class="relative flex flex-col md:flex-row items-center bg-white/95 rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl hover:-translate-y-1 transition-all duration-300 group border-0" data-aos="zoom-in" data-aos-delay="200">
+          <div class="absolute top-2 left-1/2 -translate-x-1/2 w-32 h-2 bg-gradient-to-r from-blue-400 via-blue-200 to-blue-400 rounded-full shadow-lg blur-[1px] opacity-80"></div>
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-6 bg-blue-200 opacity-30 blur-2xl rounded-full"></div>
+          <div class="md:w-56 w-full h-40 md:h-40 flex-shrink-0 bg-gray-100 md:mr-8 mr-0 shadow-lg rounded-2xl overflow-hidden flex items-center justify-center">
+            <img src="photo/C3.png" alt="C3: A Bilingual Benchmark for Spoken Dialogue Models Exploring Challenges in Complex Conversations" class="object-cover w-full h-full"/>
+          </div>
+          <div class="flex-1 flex flex-col justify-center px-8 py-6">
+            <div class="flex items-center mb-2">
+              <span class="inline-block bg-gradient-to-r from-blue-200 to-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full mr-2 shadow">EMNLP 2025</span>
+              <span class="inline-block bg-blue-100 text-blue-500 text-xs font-semibold px-2 py-0.5 rounded">Findings</span>
+            </div>
+            <div class="text-2xl font-extrabold text-gray-900 mb-2 group-hover:text-blue-700 group-hover:underline transition-all duration-200 bg-gradient-to-r from-blue-400 via-blue-300 to-blue-400 bg-clip-text text-transparent group-hover:text-blue-700">
+              C<sup>3</sup>: A Bilingual Benchmark for Spoken Dialogue Models Exploring <u>C</u>hallenges in <u>C</u>omplex <u>C</u>onversations
+            </div>
+            <div class="text-sm text-gray-600 mb-3 flex items-center gap-2">
+              <span class="font-bold underline">Chengqian Ma</span>, Wei Tao, Yiwen Guo
+            </div>
+            <div class="flex gap-3">
+              <a href="#" class="rounded-full px-4 py-2 text-xs font-semibold bg-gradient-to-r from-blue-100 to-blue-200 border-0 text-blue-700 hover:bg-blue-200 flex items-center transition-all duration-200 shadow"><span class="mr-1">🔗</span>PDF</a>
+              <a href="#" class="rounded-full px-4 py-2 text-xs font-semibold bg-gradient-to-r from-blue-100 to-blue-200 border-0 text-blue-700 hover:bg-blue-200 flex items-center transition-all duration-200 shadow"><span class="mr-1">🔗</span>Code</a>
+            </div>
+          </div>
+        </div>
+        <!-- Paper 2 -->
+        <div class="relative flex flex-col md:flex-row items-center bg-white/95 rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl hover:-translate-y-1 transition-all duration-300 group border-0" data-aos="zoom-in" data-aos-delay="300">
+          <div class="absolute top-2 left-1/2 -translate-x-1/2 w-32 h-2 bg-gradient-to-r from-blue-400 via-blue-200 to-blue-400 rounded-full shadow-lg blur-[1px] opacity-80"></div>
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-6 bg-blue-200 opacity-30 blur-2xl rounded-full"></div>
+          <div class="md:w-56 w-full h-40 md:h-40 flex-shrink-0 bg-gray-100 md:mr-8 mr-0 shadow-lg rounded-2xl overflow-hidden flex items-center justify-center">
+            <img src="photo/IQAsurvey.jpg" alt="A Comprehensive Survey on Image Quality Assessment" class="object-cover w-full h-full"/>
+          </div>
+          <div class="flex-1 flex flex-col justify-center px-8 py-6">
+            <div class="flex items-center mb-2">
+              <span class="inline-block bg-gradient-to-r from-blue-200 to-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full mr-2 shadow">Arxiv</span>
+              <span class="inline-block bg-blue-100 text-blue-500 text-xs font-semibold px-2 py-0.5 rounded">2025</span>
+            </div>
+            <div class="text-2xl font-extrabold text-gray-900 mb-2 group-hover:text-blue-700 group-hover:underline transition-all duration-200 bg-gradient-to-r from-blue-400 via-blue-300 to-blue-400 bg-clip-text text-transparent group-hover:text-blue-700">
+              A Comprehensive Survey on Image Quality Assessment
+            </div>
+            <div class="text-sm text-gray-600 mb-3 flex items-center gap-2">
+              <span class="font-bold underline">Chengqian Ma</span>, Zhengyi Shi, Zhiqiang Lu, Shenghao Xie, Fei Chao, Yao Sui
+            </div>
+            <div class="flex gap-3">
+              <a href="https://mp.weixin.qq.com/s/b62C0hd6DkCDaUqFIgTBng" class="rounded-full px-4 py-2 text-xs font-semibold bg-gradient-to-r from-blue-100 to-blue-200 border-0 text-blue-700 hover:bg-blue-200 flex items-center transition-all duration-200 shadow"><span class="mr-1">🔗</span>Simple Chinese Version</a>
+              <a href="https://zhuanlan.zhihu.com/p/25680975953" class="rounded-full px-4 py-2 text-xs font-semibold bg-gradient-to-r from-blue-100 to-blue-200 border-0 text-blue-700 hover:bg-blue-200 flex items-center transition-all duration-200 shadow"><span class="mr-1">🔗</span>Chinese Version</a>
+              <a href="https://github.com/11xiaoyi11/IQA-Survey" class="rounded-full px-4 py-2 text-xs font-semibold bg-gradient-to-r from-blue-100 to-blue-200 border-0 text-blue-700 hover:bg-blue-200 flex items-center transition-all duration-200 shadow"><span class="mr-1">🔗</span>Github</a>
+              <a href="https://arxiv.org/abs/2502.08540" class="rounded-full px-4 py-2 text-xs font-semibold bg-gradient-to-r from-blue-100 to-blue-200 border-0 text-blue-700 hover:bg-blue-200 flex items-center transition-all duration-200 shadow"><span class="mr-1">🔗</span>ArXiv</a>
+            </div>
+          </div>
+        </div>
+        <!-- Paper 3 -->
+        <div class="relative flex flex-col md:flex-row items-center bg-white/95 rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl hover:-translate-y-1 transition-all duration-300 group border-0" data-aos="zoom-in" data-aos-delay="400">
+          <div class="absolute top-2 left-1/2 -translate-x-1/2 w-32 h-2 bg-gradient-to-r from-blue-400 via-blue-200 to-blue-400 rounded-full shadow-lg blur-[1px] opacity-80"></div>
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-6 bg-blue-200 opacity-30 blur-2xl rounded-full"></div>
+          <div class="md:w-56 w-full h-40 md:h-40 flex-shrink-0 bg-gray-100 md:mr-8 mr-0 shadow-lg rounded-2xl overflow-hidden flex items-center justify-center">
+            <img src="photo/PRS.png" alt="PRS-ECAI Workshop Paper" class="object-cover w-full h-full"/>
+          </div>
+          <div class="flex-1 flex flex-col justify-center px-8 py-6">
+            <div class="flex items-center mb-2">
+              <span class="inline-block bg-gradient-to-r from-blue-200 to-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full mr-2 shadow">Arxiv</span>
+              <span class="inline-block bg-blue-100 text-blue-500 text-xs font-semibold px-2 py-0.5 rounded">2024</span>
+            </div>
+            <div class="text-2xl font-extrabold text-gray-900 mb-2 group-hover:text-blue-700 group-hover:underline transition-all duration-200 bg-gradient-to-r from-blue-400 via-blue-300 to-blue-400 bg-clip-text text-transparent group-hover:text-blue-700">
+              Prompt Recursive Search: A Living Framework with Adaptive Growth in LLM Auto-Prompting
+            </div>
+            <div class="text-sm text-gray-600 mb-3 flex items-center gap-2">
+              Xiangyu Zhao, <span class="font-bold underline">Chengqian Ma</span>
+            </div>
+            <div class="flex gap-3">
+              <a href="https://arxiv.org/pdf/2408.01423" class="rounded-full px-4 py-2 text-xs font-semibold bg-gradient-to-r from-blue-100 to-blue-200 border-0 text-blue-700 hover:bg-blue-200 flex items-center transition-all duration-200 shadow"><span class="mr-1">🔗</span>PDF</a>
+              <a href="https://arxiv.org/abs/2408.01423" class="rounded-full px-4 py-2 text-xs font-semibold bg-gradient-to-r from-blue-100 to-blue-200 border-0 text-blue-700 hover:bg-blue-200 flex items-center transition-all duration-200 shadow"><span class="mr-1">🔗</span>arxiv</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Honors and Awards Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12" data-aos="fade-up" data-aos-delay="200">
+      <!-- Honors -->
+      <section>
+        <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+          <span class="w-8 h-8 mr-3 text-yellow-600">🏅</span>Honors
+        </h2>
+        <div class="space-y-4">
+          <div class="bg-white rounded-lg border border-purple-100 shadow-lg shadow-purple-100 p-4 transform hover:shadow-2xl hover:scale-105 transition-transform duration-300 bounce-hover" data-aos="fade-right" data-aos-delay="300">
+            <div class="flex justify-between items-start">
+              <div>
+                <div class="text-lg font-bold">"Jin Mu Mian" Medal (1 out of 1000)</div>
+                <div class="text-gray-600">Xiamen University</div>
+              </div>
+              <span class="px-2 py-1 bg-purple-100 text-purple-700 rounded">2022</span>
+            </div>
+            <!-- <div class="text-gray-600 mt-2">表彰在计算机科学领域做出杰出贡献的博士论文</div> -->
+          </div>
+          <div class="bg-white rounded-lg border border-purple-100 shadow-lg shadow-purple-100 p-4 transform hover:shadow-2xl hover:scale-105 transition-transform duration-300 bounce-hover" data-aos="fade-right" data-aos-delay="300">
+            <div class="flex justify-between items-start">
+              <div>
+                <div class="text-lg font-bold">Outstanding Graduate</div>
+                <div class="text-gray-600">Xiamen University</div>
+              </div>
+              <span class="px-2 py-1 bg-purple-100 text-purple-700 rounded">2023</span>
+            </div>
+            <!-- <div class="text-gray-600 mt-2">表彰在计算机科学领域做出杰出贡献的博士论文</div> -->
+          </div>
+          <div class="bg-white rounded-lg border border-purple-100 shadow-lg shadow-purple-100 p-4 transform hover:shadow-2xl hover:scale-105 transition-transform duration-300 bounce-hover" data-aos="fade-right" data-aos-delay="500">
+            <div class="flex justify-between items-start">
+              <div>
+                <div class="text-lg font-bold">Merit Student * 4</div>
+                <div class="text-gray-600">Xiamen University</div>
+              </div>
+              <span class="px-2 py-1 bg-purple-100 text-purple-700 rounded">2021-2025</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Competition Awards -->
+      <section>
+        <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+          <span class="w-8 h-8 mr-3 text-orange-600">🏆</span>Competition
+        </h2>
+        <div class="space-y-4">
+          <div class="bg-white rounded-lg border border-purple-100 shadow-lg shadow-purple-100 p-4 transform hover:shadow-2xl hover:scale-105 transition-transform duration-300 bounce-hover" data-aos="fade-left" data-aos-delay="400">
+            <div class="flex justify-between items-start">
+              <div>
+                <div class="text-lg font-bold">China Collegiate Programming Contest</div>
+                <div class="text-gray-600">CCPC Region Ag</div>
+              </div>
+              <div class="text-right">
+                <span class="px-2 py-1 bg-purple-100 text-purple-700 rounded">2023</span>
+                <div class="text-sm font-medium text-orange-600 mt-1">Silver Medal</div>
+              </div>
+            </div>
+            <!-- <div class="text-gray-600 mt-2">仿真组足球比赛亚军</div> -->
+          </div>
+          <div class="bg-white rounded-lg border border-purple-100 shadow-lg shadow-purple-100 p-4 transform hover:shadow-2xl hover:scale-105 transition-transform duration-300 bounce-hover" data-aos="fade-left" data-aos-delay="500">
+            <div class="flex justify-between items-start">
+              <div>
+                <div class="text-lg font-bold">COMAP's MCM&ICM</div>
+                <div class="text-gray-600">Meritorious Winner</div>
+              </div>
+              <div class="text-right">
+                <span class="px-2 py-1 bg-purple-100 text-purple-700 rounded">2023</span>
+                <div class="text-sm font-medium text-orange-600 mt-1">top 5%</div>
+              </div>
+            </div>
+            <!-- <div class="text-gray-600 mt-2">推荐系统竞赛季军</div> -->
+          </div>
+          <div class="bg-white rounded-lg border border-purple-100 shadow-lg shadow-purple-100 p-4 transform hover:shadow-2xl hover:scale-105 transition-transform duration-300 bounce-hover" data-aos="fade-left" data-aos-delay="300">
+            <div class="flex justify-between items-start">
+              <div>
+                <div class="text-lg font-bold">Huawei ICT competition</div>
+                <div class="text-gray-600">The first place in China Area</div>
+              </div>
+              <div class="text-right">
+                <span class="px-2 py-1 bg-purple-100 text-purple-700 rounded">2024</span>
+                <div class="text-sm font-medium text-orange-600 mt-1">Top 0.1%</div>
+              </div>
+            </div>
+            <!-- <div class="text-gray-600 mt-2">Top 0.1% out of 100,000+ participants</div> -->
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Visitor Counter -->
+    <div class="flex justify-center items-center py-4">
+      <div class="bg-green-50 border border-green-200 rounded-lg px-6 py-2 text-green-700 font-semibold shadow-sm flex items-center gap-2">
+        <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+        Visitors: <span id="visitor-count">-</span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 border-t border-gray-200" data-aos="fade-up" data-aos-delay="300">
+      <p class="text-gray-600">
+        更新时间：2025-09-30<br>
+        © 2025 马承乾. 保留所有权利。
+      </p>
+    </footer>
+  </div>
+  <!-- AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+  </script>
+  <script>
+    function toggleFriendLinks() {
+      const dropdown = document.getElementById('friend-links-dropdown');
+      dropdown.classList.toggle('hidden');
+    }
+    // 点击页面其他地方关闭菜单
+    document.addEventListener('click', function(event) {
+      const btn = document.getElementById('friend-link-btn');
+      const dropdown = document.getElementById('friend-links-dropdown');
+      if (!btn.contains(event.target) && !dropdown.contains(event.target)) {
+        dropdown.classList.add('hidden');
+      }
+    });
+  </script>
+  <script>
+    // 本地访客计数器（localStorage，刷新页面不变，清除缓存会重置）
+    (function() {
+      let count = localStorage.getItem('visitor_count');
+      if (!count) {
+        count = 1;
+      } else {
+        count = parseInt(count) + 1;
+      }
+      localStorage.setItem('visitor_count', count);
+      document.getElementById('visitor-count').textContent = count;
+    })();
+  </script>
+</body>
+</html>
