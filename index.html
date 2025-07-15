@@ -12,18 +12,19 @@
   <style>
   @keyframes bounce-in-hover {
     0%   { transform: scale(1);}
-    40%  { transform: scale(1.08);}
+    40%  { transform: scale(1.10);}
     100% { transform: scale(1);}
   }
   .bounce-hover:hover {
-    animation: bounce-in-hover 0.5s;
+    animation: bounce-in-hover 0.5s cubic-bezier(.22,1.15,.47,1.01);
+    z-index: 10;
   }
   </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-blue-50 to-blue-200 font-sans">
   <div class="container mx-auto px-4 py-8 max-w-6xl">
     <!-- Header Section -->
-    <section class="mb-12" data-aos="fade-down">
+    <section class="mb-12 bounce-hover" data-aos="fade-down">
       <div class="overflow-hidden bg-white/90 rounded-3xl shadow-2xl border-0 p-2 md:p-4 flex flex-col items-center relative">
         <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-36 h-36 bg-gradient-to-tr from-blue-200 via-green-200 to-blue-100 rounded-full blur-2xl opacity-60 z-0"></div>
         <div class="p-8 flex flex-col md:flex-row items-center gap-8 relative z-10">
@@ -80,7 +81,7 @@
       </h2>
       <div class="space-y-6">
         <!-- News Item 1 -->
-        <div class="flex bg-white rounded-lg border border-blue-100 shadow-lg p-4 items-center gap-4">
+        <div class="flex bg-white rounded-lg border border-blue-100 shadow-lg p-4 items-center gap-4 bounce-hover">
           <div class="w-24 h-24 flex-shrink-0 bg-gray-100 rounded overflow-hidden flex items-center justify-center">
             <img src="photo/XMUover.jpg" alt="新闻图片1" class="object-cover w-full h-full"/>
           </div>
@@ -102,29 +103,29 @@
       </h2>
       <div class="space-y-6">
         <!-- Experience 1: 本科 厦门大学 -->
-        <div class="flex bg-white rounded-lg border border-green-100 shadow-lg p-4 items-center gap-4">
+        <div class="flex bg-white rounded-lg border border-green-100 shadow-lg p-4 items-center gap-4 bounce-hover">
           <div class="w-20 h-20 flex-shrink-0 bg-gray-100 rounded overflow-hidden flex items-center justify-center">
             <img src="photo/xmu-logo.svg" alt="厦门大学" class="object-contain w-full h-full"/>
           </div>
           <div class="flex-1">
-            <div class="text-lg font-bold">Bachelor, Xiamen University</div>
+            <div class="text-lg font-bold">Xiamen University</div>
             <div class="text-gray-600 text-sm mb-1">2021 - 2025</div>
-            <div class="text-gray-700">Major in AI</div>
+            <div class="text-gray-700">Bachelor</div>
           </div>
         </div>
         <!-- Experience 2: 博士 北京大学 -->
-        <div class="flex bg-white rounded-lg border border-green-100 shadow-lg p-4 items-center gap-4">
+        <div class="flex bg-white rounded-lg border border-green-100 shadow-lg p-4 items-center gap-4 bounce-hover">
           <div class="w-20 h-20 flex-shrink-0 bg-gray-100 rounded overflow-hidden flex items-center justify-center">
             <img src="photo/pku.png" alt="北京大学" class="object-contain w-full h-full"/>
           </div>
           <div class="flex-1">
-            <div class="text-lg font-bold">PhD candidate, Peking University</div>
+            <div class="text-lg font-bold">Peking University</div>
             <div class="text-gray-600 text-sm mb-1">2025 - Present</div>
-            <div class="text-gray-700">Major in AI</div>
+            <div class="text-gray-700">PhD candidate</div>
           </div>
         </div>
         <!-- Experience 3: 腾讯科研实习 -->
-        <div class="flex bg-white rounded-lg border border-green-100 shadow-lg p-4 items-center gap-4">
+        <div class="flex bg-white rounded-lg border border-green-100 shadow-lg p-4 items-center gap-4 bounce-hover">
           <div class="w-20 h-20 flex-shrink-0 bg-gray-100 rounded overflow-hidden flex items-center justify-center">
             <img src="photo/Tencent.png" alt="腾讯" class="object-contain w-full h-full"/>
           </div>
@@ -146,7 +147,7 @@
       </h2>
       <div class="space-y-8">
         <!-- Paper 1 -->
-        <div class="relative flex flex-col md:flex-row items-center bg-white/95 rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl hover:-translate-y-1 transition-all duration-300 group border-0" data-aos="zoom-in" data-aos-delay="200">
+        <div class="relative flex flex-col md:flex-row items-center bg-white/95 rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl hover:-translate-y-1 transition-all duration-300 group border-0 bounce-hover" data-aos="zoom-in" data-aos-delay="200">
           <div class="absolute top-2 left-1/2 -translate-x-1/2 w-32 h-2 bg-gradient-to-r from-blue-400 via-blue-200 to-blue-400 rounded-full shadow-lg blur-[1px] opacity-80"></div>
           <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-6 bg-blue-200 opacity-30 blur-2xl rounded-full"></div>
           <div class="md:w-56 w-full h-40 md:h-40 flex-shrink-0 bg-gray-100 md:mr-8 mr-0 shadow-lg rounded-2xl overflow-hidden flex items-center justify-center">
@@ -170,7 +171,7 @@
           </div>
         </div>
         <!-- Paper 2 -->
-        <div class="relative flex flex-col md:flex-row items-center bg-white/95 rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl hover:-translate-y-1 transition-all duration-300 group border-0" data-aos="zoom-in" data-aos-delay="300">
+        <div class="relative flex flex-col md:flex-row items-center bg-white/95 rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl hover:-translate-y-1 transition-all duration-300 group border-0 bounce-hover" data-aos="zoom-in" data-aos-delay="300">
           <div class="absolute top-2 left-1/2 -translate-x-1/2 w-32 h-2 bg-gradient-to-r from-blue-400 via-blue-200 to-blue-400 rounded-full shadow-lg blur-[1px] opacity-80"></div>
           <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-6 bg-blue-200 opacity-30 blur-2xl rounded-full"></div>
           <div class="md:w-56 w-full h-40 md:h-40 flex-shrink-0 bg-gray-100 md:mr-8 mr-0 shadow-lg rounded-2xl overflow-hidden flex items-center justify-center">
@@ -196,7 +197,7 @@
           </div>
         </div>
         <!-- Paper 3 -->
-        <div class="relative flex flex-col md:flex-row items-center bg-white/95 rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl hover:-translate-y-1 transition-all duration-300 group border-0" data-aos="zoom-in" data-aos-delay="400">
+        <div class="relative flex flex-col md:flex-row items-center bg-white/95 rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl hover:-translate-y-1 transition-all duration-300 group border-0 bounce-hover" data-aos="zoom-in" data-aos-delay="400">
           <div class="absolute top-2 left-1/2 -translate-x-1/2 w-32 h-2 bg-gradient-to-r from-blue-400 via-blue-200 to-blue-400 rounded-full shadow-lg blur-[1px] opacity-80"></div>
           <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-6 bg-blue-200 opacity-30 blur-2xl rounded-full"></div>
           <div class="md:w-56 w-full h-40 md:h-40 flex-shrink-0 bg-gray-100 md:mr-8 mr-0 shadow-lg rounded-2xl overflow-hidden flex items-center justify-center">
@@ -204,7 +205,7 @@
           </div>
           <div class="flex-1 flex flex-col justify-center px-8 py-6">
             <div class="flex items-center mb-2">
-              <span class="inline-block bg-gradient-to-r from-blue-200 to-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full mr-2 shadow">Arxiv</span>
+              <span class="inline-block bg-gradient-to-r from-blue-200 to-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full mr-2 shadow">ECAI workshop</span>
               <span class="inline-block bg-blue-100 text-blue-500 text-xs font-semibold px-2 py-0.5 rounded">2024</span>
             </div>
             <div class="text-2xl font-extrabold text-gray-900 mb-2 group-hover:text-blue-700 group-hover:underline transition-all duration-200 bg-gradient-to-r from-blue-400 via-blue-300 to-blue-400 bg-clip-text text-transparent group-hover:text-blue-700">
@@ -236,7 +237,7 @@
                 <div class="text-lg font-bold">"Jin Mu Mian" Medal (1 out of 1000)</div>
                 <div class="text-gray-600">Xiamen University</div>
               </div>
-              <span class="px-2 py-1 bg-purple-100 text-purple-700 rounded">2022</span>
+              <span class="px-2 py-1 bg-purple-100 text-purple-700 rounded">2024</span>
             </div>
             <!-- <div class="text-gray-600 mt-2">表彰在计算机科学领域做出杰出贡献的博士论文</div> -->
           </div>
@@ -246,7 +247,7 @@
                 <div class="text-lg font-bold">Outstanding Graduate</div>
                 <div class="text-gray-600">Xiamen University</div>
               </div>
-              <span class="px-2 py-1 bg-purple-100 text-purple-700 rounded">2023</span>
+              <span class="px-2 py-1 bg-purple-100 text-purple-700 rounded">2025</span>
             </div>
             <!-- <div class="text-gray-600 mt-2">表彰在计算机科学领域做出杰出贡献的博士论文</div> -->
           </div>
@@ -310,11 +311,11 @@
       </section>
     </div>
 
-    <!-- Visitor Counter -->
+    <!-- Visitor Counter (busuanzi) -->
     <div class="flex justify-center items-center py-4">
-      <div class="bg-green-50 border border-green-200 rounded-lg px-6 py-2 text-green-700 font-semibold shadow-sm flex items-center gap-2">
-        <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
-        Visitors: <span id="visitor-count">-</span>
+      <div class="bg-blue-50 border border-blue-200 rounded-lg px-6 py-2 text-blue-700 font-semibold shadow-sm flex items-center gap-2">
+        <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+        Visitors: <span id="busuanzi_value_site_pv">-</span>
       </div>
     </div>
 
@@ -348,18 +349,6 @@
       }
     });
   </script>
-  <script>
-    // 本地访客计数器（localStorage，刷新页面不变，清除缓存会重置）
-    (function() {
-      let count = localStorage.getItem('visitor_count');
-      if (!count) {
-        count = 1;
-      } else {
-        count = parseInt(count) + 1;
-      }
-      localStorage.setItem('visitor_count', count);
-      document.getElementById('visitor-count').textContent = count;
-    })();
-  </script>
+  <script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </body>
 </html>
