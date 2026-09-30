@@ -14,12 +14,13 @@
     buttons.forEach((button) => {
       button.setAttribute('aria-pressed', String(button.dataset.filter === year));
     });
-    count.textContent = `${visible} publication${visible === 1 ? '' : 's'}`;
+    count.textContent = `${visible} selected publication${visible === 1 ? '' : 's'}`;
   }
 
   buttons.forEach((button) => {
     button.addEventListener('click', () => filterPublications(button.dataset.filter));
   });
+  filterPublications('all');
   toolbar.hidden = false;
 
   // A direct paper link must stay reachable, even after filtering another year.
