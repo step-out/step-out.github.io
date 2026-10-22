@@ -62,9 +62,6 @@ h1 > span { display: inline-block; margin-left: 18px; font: 25px/1.3 "Songti SC"
 .portrait-frame::after { content: ""; position: absolute; right: -12px; top: -12px; width: 43px; height: 43px; border-right: 1px solid #8da9ce; border-top: 1px solid #8da9ce; border-radius: 0 4px 0 0; }
 .portrait picture { display: block; overflow: hidden; border-radius: 3px; }
 .portrait img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
-.portrait figcaption { display: flex; justify-content: center; align-items: center; column-gap: 8px; flex-wrap: wrap; margin-top: 23px; font-size: 14px; font-weight: 500; }
-.portrait-caption-line { height: 1px; width: 16px; background: var(--accent); }
-.portrait figcaption > span:last-child { color: var(--muted); font-size: 14px; }
 .news-section { display: grid; grid-template-columns: 215px minmax(0,1fr); gap: 42px; padding: 25px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .news-section h2 { display: flex; align-items: center; align-self: start; gap: 10px; font-size: 17px; font-weight: 600; padding-top: 3px; }
 .news-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
@@ -181,8 +178,6 @@ h1 > span { display: inline-block; margin-left: 18px; font: 25px/1.3 "Songti SC"
   .hero-description em { font-size: 22px; }
   .desktop-break { display: none; }
   .bio { font-size: 18px; }
-  .portrait figcaption { gap: 6px; font-size: 13px; }
-  .portrait figcaption > span:last-child { flex-basis: 100%; text-align: center; }
   .social-links { gap: 18px; }
   .section-layout { grid-template-columns: 1fr; gap: 27px; padding: 45px 0; }
   .section-heading { position: static; }
@@ -213,7 +208,6 @@ h1 > span { display: inline-block; margin-left: 18px; font: 25px/1.3 "Songti SC"
   .portrait { position: absolute; width: 104px; top: 89px; right: 1px; margin: 0; }
   .portrait-frame { padding: 5px; }
   .portrait-frame::after { width: 24px; height: 24px; right: -7px; top: -7px; }
-  .portrait figcaption { display: none; }
   .hero-description { font-size: 22px; line-height: 1.6; }
   .hero-description em { font-size: 23px; }
   .bio { line-height: 1.85; }
@@ -292,6 +286,7 @@ h1 > span { display: inline-block; margin-left: 18px; font: 25px/1.3 "Songti SC"
 .map-core h3 { font: 34px/1.12 var(--serif); color: var(--accent-dark); letter-spacing: -1px; }
 .map-core-rule { width: 29px; height: 1px; background: #9fb8db; margin: 14px 0 10px; }
 .map-core p { font-size: 14px; line-height: 1.4; color: var(--muted); }
+.map-core p strong { display: block; margin-bottom: 4px; color: var(--accent-dark); font-size: 16px; font-weight: 600; }
 .map-core p > span[aria-hidden] { color: #5f7fa9; }
 .map-axis { font-size: 12px; letter-spacing: 2px; font-weight: 600; color: var(--muted); }
 .map-environment { grid-column: 1; grid-row: 1; align-self: center; padding: 0 32px 0 0; text-align: center; }
