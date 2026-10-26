@@ -95,7 +95,7 @@ function createWorldAudio(toggle) {
     if (context?.state === 'running') context.suspend().catch(() => {});
   }
   function canPlay() {
-    return enabled && context?.state === 'running' && !document.hidden && sceneVisible;
+    return enabled && context?.state === 'running' && !document.hidden && sceneVisible && !document.documentElement.matches('.is-loading,.is-revealing');
   }
   function register(source, nodes, end) {
     voices.add(source);
@@ -153,6 +153,7 @@ function createWorldAudio(toggle) {
   }
   listen(toggle, 'click', () => enabled || activating ? disable() : void enable());
   function unlock(event) {
+    if (document.documentElement.matches('.is-loading,.is-revealing')) return;
     if (!armed || !event.isTrusted || event.target.closest?.('.sound-toggle')) return;
     if (event.type === 'keydown' && !['Enter', ' '].includes(event.key)) return;
     void enable();

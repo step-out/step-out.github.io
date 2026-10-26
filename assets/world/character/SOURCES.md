@@ -19,3 +19,12 @@ Idle and Wave, using a fixed orthographic camera and a translucent ground
 shadow. Animation timings and atlas coordinates are in `route-robot.json`.
 The character faces right; the navigation renderer mirrors the frames when
 travelling left. The original model's CC0 license applies to this derivative.
+
+## Loading robot
+
+`loading-robot.webp` is the 128 × 128 transparent frame 58 from
+`route-robot.webp` (Wave clip, frame 10). It preserves the original canvas,
+foot anchor and translucent shadow, and uses lossless WebP encoding. This
+small standalone image lets the loading screen show the same robot before
+the 3D scene or complete navigation atlas is ready. The same CC0 license
+applies.

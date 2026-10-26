@@ -14,6 +14,12 @@ createWorld().catch(error => {
 
 async function createWorld() {
   let booted=false;
+  // Count complete resources, not bytes or an elapsed-time estimate. The final
+  // milestone is GPU preparation; the loading screen waits for a rendered frame.
+  const loadTotal=14;let loadCount=0;
+  function loading(stage,resource){window.dispatchEvent(new CustomEvent('scene:load-progress',{detail:{loaded:loadCount,total:loadTotal,stage,resource}}));}
+  async function tracked(resource,load){try{return await load();}finally{loadCount++;loading('assets',resource);}}
+  loading('initializing');
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'high-performance'});
   renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
@@ -64,7 +70,9 @@ async function createWorld() {
   const lampPositions=[];
   for(let i=0;i<7;i++){const angle=i*Math.PI*2/7+.3;const x=Math.cos(angle)*7.0,z=Math.sin(angle)*7.0;box(.065,.75,.065,mats.dark,x,.55,z);const bulb=mesh(new THREE.SphereGeometry(.13,12,8),lampMaterial);bulb.position.set(x,.96,z);lampPositions.push(new THREE.Vector3(x,1.07,z));}
   const lighting=createLighting({scene,renderer,sun:light,hemisphere,fill,lampMaterial,lamps:lampPositions,waterMaterial,onChange:request});
-  async function loadModel(name){if(models.has(name))return models.get(name);const gltf=await loader.loadAsync(`./assets/world/nature/${name}.glb`);models.set(name,gltf.scene);return gltf.scene;}
+  async function prepareTexture(texture){const image=texture.source?.data||texture.image;if(typeof image?.decode==='function')await image.decode();renderer.initTexture(texture);}
+  async function prepareModel(model){const textures=new Set();model.traverse(object=>{const materials=Array.isArray(object.material)?object.material:[object.material];for(const material of materials)if(material)for(const value of Object.values(material))if(value?.isTexture)textures.add(value);});await Promise.all([...textures].map(prepareTexture));return model;}
+  async function loadModel(name){if(models.has(name))return models.get(name);const gltf=await loader.loadAsync(`./assets/world/nature/${name}.glb`);await prepareModel(gltf.scene);models.set(name,gltf.scene);return gltf.scene;}
   function instance(template,x,z,height,rotation=0){const radius=Math.hypot(x,z);if(radius>10.5){x*=10.5/radius;z*=10.5/radius;}const object=template.clone(true),bounds=new THREE.Box3().setFromObject(object),size=bounds.getSize(new THREE.Vector3());const scale=height/size.y;object.scale.setScalar(scale);object.position.set(x,.23-bounds.min.y*scale,z);object.rotation.y=rotation;object.traverse(m=>{if(m.isMesh){m.castShadow=true;m.receiveShadow=true;}});world.add(object);return object;}
   const modelJobs=[
     ['BirchTree_1',[[-7,-7,5.4,.7],[7,-7,5.7,1.4]]],
@@ -75,12 +83,16 @@ async function createWorld() {
     ['rock_largeB',[[3,-4,.55,0],[-2,4,.35,1],[-10,-5,.7,0],[9,-8,.6,0]]],
     ['plant_bushSmall',[[-2,-6,.45,0],[6,2,.55,0],[3,6,.4,0],[-6,2,.55,1]]],
   ];
-  Promise.allSettled(modelJobs.map(async([name,locations])=>{const model=await loadModel(name);if(name.startsWith('Birch'))model.traverse(m=>{if(m.isMesh&&m.material.map){m.material=m.material.clone();m.material.roughness=.92;}});locations.forEach(a=>{const o=instance(model,...a);if(name.startsWith('Birch'))trees.push(o);});})).then(()=>{modelsLoaded=true;renderer.shadowMap.needsUpdate=true;request();});
-  let modelsLoaded=false;
-  const character=await createCharacter(loader);
+  loadCount++;loading('assets');
+  const resources=modelJobs.map(([name,locations])=>tracked(name,async()=>{const model=await loadModel(name);if(name.startsWith('Birch'))model.traverse(m=>{if(m.isMesh&&m.material.map){m.material=m.material.clone();m.material.roughness=.92;}});locations.forEach(a=>{const o=instance(model,...a);if(name.startsWith('Birch'))trees.push(o);});}));
+  const characterJob=tracked('guide',async()=>{const result=await createCharacter(loader);await prepareModel(result.root);return result;});resources.push(characterJob);
+  const textures={},textureLoader=new THREE.TextureLoader();
+  for(const[id,file]of Object.entries({'duplex-mpe':'DuplexMPE','motion-omni':'MotionOmni',omnidrive:'omnidrive',c3:'C3'}))resources.push(tracked(id,async()=>{const texture=await textureLoader.loadAsync(`./photo/optimized/${file}.webp`);texture.colorSpace=THREE.SRGBColorSpace;await prepareTexture(texture);textures[id]=texture;}));
+  const results=await Promise.allSettled(resources),failed=results.find(result=>result.status==='rejected');
+  if(failed)throw new Error('A scene asset could not load. Please reload to try again.',{cause:failed.reason});
+  const modelsLoaded=true,character=await characterJob;
   const guide=character.root;world.add(guide);
   const shadow=mesh(new THREE.CircleGeometry(.54,32),new THREE.MeshBasicMaterial({color:0x2d4358,transparent:true,opacity:.13,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=.237;shadow.castShadow=false;
-  const textures={};for(const[id,file]of Object.entries({'duplex-mpe':'DuplexMPE','motion-omni':'MotionOmni',omnidrive:'omnidrive',c3:'C3'})){new THREE.TextureLoader().load(`./photo/optimized/${file}.webp`,t=>{t.colorSpace=THREE.SRGBColorSpace;textures[id]=t;updateExhibit();});}
   let exhibit='duplex-mpe';function updateExhibit(){if(textures[exhibit])exhibits.forEach(p=>{p.material.map=textures[exhibit];p.material.needsUpdate=true;});}
   let width=1,height=1,time=0,frames=0,last=0,raf=0,index=0,targetIndex=0,progress=0,from=0,travelTime=0,travelling=false,travelGoal=0,travelDuration=2.65,sideStep=.82;
   let motion=!reduced.matches&&!document.body.classList.contains('motion-paused'),visible=!document.hidden,action='wave',actionTime=0,cycle=0,idleUntil=2.5,ready=false;
@@ -139,8 +151,8 @@ async function createWorld() {
     trees.forEach(tree=>{tree.visible=true;if(sights.some(ray=>ray.intersectObject(tree,true).length))tree.visible=false;tree.rotation.z=Math.sin(time*.75+tree.position.x)*.009;});
     renderer.shadowMap.needsUpdate=true;renderer.render(scene,camera);frames++;
     stops.forEach(s=>{const v=s.group.localToWorld(project.copy(s.labelPoint)).project(camera);const x=(v.x*.5+.5)*width,y=(-v.y*.5+.5)*height;const reading=document.body.classList.contains('content-open');const show=s.id===hoveredStop&&width>210&&v.z<1&&x>width*(reading?.67:.48)&&x<width-55&&y>25&&y<height-62;s.label.hidden=!show;if(show){s.label.style.left=`${x}px`;s.label.style.top=`${y}px`;}if(s.index===targetIndex)s.label.setAttribute('aria-current','step');else s.label.removeAttribute('aria-current');});
-    if(diag)Object.assign(diag,{frames,drawN:frames,elapsed:time,action,rig:character.status(),progress,worldDistance:progress*8.2,stopId:stops[index].id,targetId:stops[targetIndex].id,travelling,loading:false,canvas:[width,height],character:{x:guide.position.x,z:guide.position.z,foot:guidePoint.y,size:3.45},exhibit,modelsLoaded,renderer:'WebGL / Three.js',camera:camera.position.toArray(),orbit,pitch,night,hoveredStop,highlightScale:hoveredStop?stops.find(s=>s.id===hoveredStop)?.group.scale.x:1,renderCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles});
-    emitProgress();if(!ready){ready=true;window.dispatchEvent(new CustomEvent('scene:ready',{detail:{view:'world-3d'}}));}
+    if(diag)Object.assign(diag,{frames,drawN:frames,elapsed:time,action,rig:character.status(),progress,worldDistance:progress*8.2,stopId:stops[index].id,targetId:stops[targetIndex].id,travelling,loading:false,canvas:[width,height],character:{x:guide.position.x,z:guide.position.z,foot:guidePoint.y,size:3.45},exhibit,modelsLoaded,assetsLoaded:loadCount,assetsTotal:loadTotal,renderer:'WebGL / Three.js',camera:camera.position.toArray(),orbit,pitch,night,hoveredStop,highlightScale:hoveredStop?stops.find(s=>s.id===hoveredStop)?.group.scale.x:1,renderCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles});
+    emitProgress();if(!ready){ready=true;loading('ready');window.dispatchEvent(new CustomEvent('scene:ready',{detail:{view:'world-3d'}}));}
     if((motion&&!reduced.matches)||lighting.moving)request();
   }
   function request(){if(booted&&!raf&&visible)raf=requestAnimationFrame(render);}
@@ -167,12 +179,20 @@ async function createWorld() {
   renderer.domElement.addEventListener('pointercancel',()=>{if(drag?.touch){orbitTarget=drag.orbit;pitchTarget=drag.pitch;orbit=drag.orbitStart;pitch=drag.pitchStart;resetView.hidden=drag.resetHidden;dragHint.hidden=!drag.resetHidden;request();}drag=null;});
   renderer.domElement.addEventListener('pointerleave',event=>{if(drag)return;const marker=event.relatedTarget?.closest?.('.world-marker');setHovered(marker?.dataset.stop||null);renderer.domElement.style.cursor='grab';request();});
   renderer.domElement.addEventListener('webglcontextlost',event=>{event.preventDefault();visible=false;if(raf)cancelAnimationFrame(raf);raf=0;window.dispatchEvent(new CustomEvent('scene:error',{detail:{message:'Graphics context interrupted'}}));});
-  renderer.domElement.addEventListener('webglcontextrestored',()=>{visible=!document.hidden;last=0;renderer.shadowMap.needsUpdate=true;window.dispatchEvent(new CustomEvent('scene:ready',{detail:{view:'world-3d'}}));request();});
+  renderer.domElement.addEventListener('webglcontextrestored',()=>{visible=!document.hidden;last=0;ready=false;renderer.shadowMap.needsUpdate=true;request();});
   window.addEventListener('journey:travel',e=>travel(e.detail||{}));
   window.addEventListener('guide:activity',e=>interact(e.detail?.action||'wave'));
   window.addEventListener('scene:exhibit',e=>{exhibit=e.detail.id;updateExhibit();request();});
   window.addEventListener('scene:motion',e=>{motion=!!e.detail?.enabled;last=0;request();});
   reduced.addEventListener('change',()=>{if(reduced.matches&&travelling)arrive();request();});
   document.addEventListener('visibilitychange',()=>{visible=!document.hidden;last=0;if(visible)request();});
-  booted=true;new ResizeObserver(resize).observe(host);resize();
+  // Navigation initializes before the module finishes loading. Resolve that
+  // current section now so deep links never reveal the About camera first.
+  const currentId=document.querySelector('.main-nav a[aria-current]')?.hash.slice(1)||location.hash.slice(1)||'about';
+  if(textures[location.hash.slice(1)])exhibit=location.hash.slice(1);
+  updateExhibit();travel({id:currentId,immediate:true});resize();positionCamera(0);
+  loading('compiling');
+  if(renderer.compileAsync)await renderer.compileAsync(scene,camera);else renderer.compile(scene,camera);
+  loadCount++;loading('compiling');
+  booted=true;new ResizeObserver(resize).observe(host);request();
 }

@@ -207,7 +207,7 @@
     lastTick = performance.now();
     ticker = setInterval(() => {
       const now = performance.now(), elapsed = Math.min(now - lastTick, 500); lastTick = now;
-      if (!document.hidden && state.auto && state.ready && !state.failed && !state.paused && !state.travelling) {
+      if (!document.hidden && !document.documentElement.matches('.is-loading,.is-revealing') && state.auto && state.ready && !state.failed && !state.paused && !state.travelling) {
         state.timeLeft -= elapsed;
         if (state.timeLeft <= 0) navigate(stops[(state.index + 1) % stops.length].id, null, {automatic: true});
       }
@@ -349,6 +349,7 @@
     if (paperExhibit) window.dispatchEvent(new CustomEvent('scene:exhibit', {detail: {id: paperExhibit}}));
     queuePaperExhibit();
   });
+  window.addEventListener('page:revealed', () => {setDwell();renderState();});
   function sceneFailure() {
     state.failed = true; state.auto = false; state.travelling = false;
     document.body.classList.add('scene-unavailable');

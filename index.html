@@ -8,6 +8,11 @@
   <title>Chengqian Ma · 马承乾</title>
   <script>
     (() => {
+      document.documentElement.classList.add('is-loading');
+      window.addEventListener('DOMContentLoaded', () => {
+        if (document.documentElement.dataset.loadingController) return;
+        document.documentElement.classList.remove('is-loading');
+      }, {once: true});
       let mode = 'auto';
       try { const saved = localStorage.getItem('garden-lighting'); if (['day', 'night'].includes(saved)) mode = saved; } catch {}
       const hour = new Date().getHours();
@@ -15,11 +20,21 @@
       document.documentElement.dataset.themeMode = mode;
     })();
   </script>
+  <style>
+    html.is-loading { overflow: hidden; background: #f5f7fc; }
+    html.is-loading[data-theme="night"] { background: #101b2d; }
+    html.is-loading body > :not(.page-loader) { visibility: hidden !important; pointer-events: none !important; }
+    .page-loader { display: none; }
+    html.is-loading .page-loader { display: grid; }
+  </style>
   <link rel="icon" type="image/svg+xml" href="photo/step-out.svg?v=blue">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="world.css">
   <link rel="stylesheet" href="appearance.css">
+  <link rel="stylesheet" href="loading.css">
+  <link rel="preload" as="image" href="assets/world/character/loading-robot.webp">
   <script type="importmap">{"imports":{"three":"./vendor/three/three.module.min.js"}}</script>
+  <script src="loading.js" defer onerror="document.documentElement.classList.remove('is-loading')"></script>
   <script src="script.js" defer></script>
   <script type="module" src="world-preferences.js"></script>
   <script type="module" src="world-audio.js"></script>
@@ -27,6 +42,25 @@
   <script type="module" src="world-scene.js"></script>
 </head>
 <body>
+  <section class="page-loader" role="dialog" aria-modal="true" aria-labelledby="loading-title" aria-describedby="loading-status" tabindex="-1">
+    <span class="loading-wordmark" aria-hidden="true">step out<span>.</span></span>
+    <div class="loading-center">
+      <div class="loading-art" aria-hidden="true">
+        <span class="loading-halo"></span><span class="loading-orbit"></span>
+        <img src="assets/world/character/loading-robot.webp" width="128" height="128" alt="" decoding="async" fetchpriority="high">
+        <span class="loading-ground"></span>
+      </div>
+      <p class="loading-eyebrow">CHENGQIAN MA · RESEARCH</p>
+      <h2 id="loading-title">Opening the garden<span>.</span></h2>
+      <p id="loading-status" role="status" aria-live="polite">Preparing your visit…</p>
+      <progress class="loading-progress" max="1" value="0" aria-label="Garden loading progress"></progress>
+      <div class="loading-actions" hidden>
+        <button class="loading-retry" type="button">Try again <span aria-hidden="true">↻</span></button>
+        <button class="loading-continue" type="button">Read without the scene <span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+    <span class="loading-footnote" aria-hidden="true">Ideas, papers &amp; a little exploration.</span>
+  </section>
   <a class="skip-link" href="#main">Skip to introduction</a>
   <header class="site-header">
     <a class="wordmark" href="#about" aria-label="Step out — Chengqian Ma, home">step out<span class="wordmark-dot">.</span></a>
