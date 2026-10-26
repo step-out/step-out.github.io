@@ -1,0 +1,36 @@
+{
+  "image": "route-robot.webp",
+  "frameSize": 128,
+  "columns": 8,
+  "rows": 9,
+  "frameCount": 72,
+  "facing": "right",
+  "anchor": {
+    "x": 0.5,
+    "y": 0.92
+  },
+  "clips": {
+    "run": {
+      "start": 0,
+      "count": 24,
+      "duration": 0.9583333134651184,
+      "fps": 25.043478780072228,
+      "loop": true
+    },
+    "idle": {
+      "start": 24,
+      "count": 24,
+      "duration": 3.3333332538604736,
+      "fps": 7.200000171661381,
+      "loop": true
+    },
+    "wave": {
+      "start": 48,
+      "count": 24,
+      "duration": 1.8333333730697632,
+      "fps": 13.090908807171283,
+      "loop": false
+    }
+  },
+  "source": "guide.glb (RobotExpressive, CC0); site blue/ivory materials; baked from original rig animation"
+}

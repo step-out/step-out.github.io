@@ -3,55 +3,109 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Chengqian Ma (马承乾) — PhD student at Peking University working toward interactive world models through real-time multimodal understanding and generation and dialogue models, with AI4Game as a testbed and application domain.">
+  <meta name="description" content="Chengqian Ma (马承乾) — PhD student at Peking University working toward interactive world models through real-time multimodal understanding and generation and dialogue models, with an interest in AI4Game.">
   <meta name="theme-color" content="#f7f9fc">
   <title>Chengqian Ma · 马承乾</title>
+  <script>
+    (() => {
+      let mode = 'auto';
+      try { const saved = localStorage.getItem('garden-lighting'); if (['day', 'night'].includes(saved)) mode = saved; } catch {}
+      const hour = new Date().getHours();
+      document.documentElement.dataset.theme = mode === 'auto' ? (hour >= 7 && hour < 19 ? 'day' : 'night') : mode;
+      document.documentElement.dataset.themeMode = mode;
+    })();
+  </script>
   <link rel="icon" type="image/svg+xml" href="photo/step-out.svg?v=blue">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="world.css">
+  <link rel="stylesheet" href="appearance.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three/three.module.min.js"}}</script>
   <script src="script.js" defer></script>
+  <script type="module" src="world-preferences.js"></script>
+  <script type="module" src="world-audio.js"></script>
+  <script type="module" src="route-robot.js"></script>
+  <script type="module" src="world-scene.js"></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main">Skip to introduction</a>
   <header class="site-header">
-    <div class="header-inner">
-      <a class="wordmark" href="#about" aria-label="step out — Chengqian Ma, home"><span class="monogram" aria-hidden="true">step out</span><span>CHENGQIAN MA</span></a>
-      <nav aria-label="Main navigation">
-        <a href="#about" aria-current="location">About</a>
-        <a href="#publications">Selected work</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-      </nav>
-      <a class="header-contact" href="mailto:chengqianma@yeah.net">Get in touch <span aria-hidden="true">↗</span></a>
+    <a class="wordmark" href="#about" aria-label="Step out — Chengqian Ma, home">step out<span class="wordmark-dot">.</span></a>
+    <nav class="main-nav" aria-label="Explore research, papers, and experience">
+      <a href="#about" aria-current="page">About</a>
+      <a href="#research-map">Research</a>
+      <a href="#publications">Papers</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#recognition">Honors</a>
+    </nav>
+    <div class="site-controls" aria-label="Page preferences">
+      <div class="appearance-control" hidden>
+        <button class="theme-toggle" type="button" aria-expanded="false" aria-controls="theme-options" aria-label="Choose day or night lighting"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="3.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 1v2m0 14v2M1 10h2m14 0h2M3.6 3.6 5 5m10 10 1.4 1.4M3.6 16.4 5 15M15 5l1.4-1.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span>Day</span></button>
+        <div id="theme-options" class="theme-options" role="group" aria-label="Garden lighting" hidden><button type="button" data-theme-choice="auto" aria-pressed="true">Auto</button><button type="button" data-theme-choice="day" aria-pressed="false">Day</button><button type="button" data-theme-choice="night" aria-pressed="false">Night</button><p>Auto follows your local time.</p></div>
+      </div>
+      <button class="sound-toggle" type="button" aria-pressed="false" aria-label="Enable sound effects" hidden><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 8h3l4-4v12l-4-4H3V8Zm11-1 4 6m0-6-4 6" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg><span>Sound</span></button>
+      <button class="tour-toggle" type="button" aria-pressed="false" aria-label="Pause automatic tour" hidden><span aria-hidden="true">Ⅱ</span><span>Hold tour</span></button>
+      <button class="motion-toggle" type="button" aria-pressed="false" aria-label="Pause animations" hidden><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 5v10M13 5v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Pause</span></button>
     </div>
   </header>
 
-  <main id="main" class="page-shell">
-    <section id="about" class="hero" aria-labelledby="intro-title">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> RESEARCH · INTERACTIVE AI</p>
-        <h1 id="intro-title">Chengqian Ma<span lang="zh-CN">马承乾</span></h1>
-        <p class="hero-description">Towards <em>Interactive World Models.</em></p>
-        <p class="bio">I'm a PhD student at <strong>Peking University</strong>. My long-term goal is to build <strong>interactive world models</strong>. I study <strong>real-time multimodal understanding and generation</strong> and <strong>dialogue models</strong>, with <strong>AI4Game</strong> as a testbed and application domain for this research.</p>
-        <div class="research-interests" aria-label="Research interests">
-          <span>Omni LLM</span>
-          <span>Audio-Video Understanding &amp; Generation</span>
-          <span>Full-Duplex</span>
-        </div>
-        <div class="social-links" aria-label="Contact and profiles">
-          <a href="mailto:chengqianma@yeah.net"><img src="photo/email.svg" alt="" width="18" height="18">Email <span aria-hidden="true">↗</span></a>
-          <a href="https://scholar.google.com/citations?user=cuUiimIAAAAJ" target="_blank" rel="noopener noreferrer"><img src="photo/google-scholar.svg" alt="" width="18" height="18">Google Scholar <span aria-hidden="true">↗</span></a>
-          <a href="https://github.com/step-out" target="_blank" rel="noopener noreferrer"><img src="photo/GitHub.svg" alt="" width="18" height="18">GitHub <span aria-hidden="true">↗</span></a>
-        </div>
+  <main id="main" class="journey-layout">
+    <aside id="about" class="profile" aria-labelledby="intro-title">
+      <p class="profile-kicker">AI RESEARCH · PEKING UNIVERSITY</p>
+      <div class="profile-identity">
+        <picture class="profile-photo"><source srcset="photo/optimized/photo.webp" type="image/webp"><img src="photo/photo.jpg" alt="Chengqian Ma" width="2000" height="2000" fetchpriority="high"></picture>
+        <div><h1 id="intro-title">Chengqian Ma</h1><span class="chinese-name" lang="zh-CN">马承乾</span></div>
       </div>
-      <figure class="portrait">
-        <div class="portrait-frame"><picture>
-              <source srcset="photo/optimized/photo.webp" type="image/webp">
-              <img src="photo/photo.jpg" alt="Chengqian Ma (马承乾)" width="2000" height="2000" fetchpriority="high" decoding="async">
-            </picture></div>
-      </figure>
-    </section>
+      <h2 class="profile-vision">Towards <em>interactive <br>world models.</em></h2>
+      <p class="bio">PhD student at Peking University, researching <strong>real-time multimodal understanding and generation</strong> and <strong>dialogue models</strong>. I'm also interested in <strong>AI4Game</strong>.</p>
+      <div class="research-interests" aria-label="Research interests"><span>Omni LLM</span><span>Audio-Video Understanding &amp; Generation</span><span>Full-Duplex</span></div>
+      <div class="profile-actions"><a class="primary-action" href="#research-map">Start the journey <span aria-hidden="true">→</span></a><a class="secondary-action" href="#publications">Jump to papers <span aria-hidden="true">↗</span></a></div>
+      <div class="social-links" aria-label="Contact and profiles">
+        <a href="mailto:chengqianma@yeah.net"><img src="photo/email.svg" alt="" width="16" height="16">Email <span aria-hidden="true">↗</span></a>
+        <a href="https://scholar.google.com/citations?user=cuUiimIAAAAJ" target="_blank" rel="noopener noreferrer"><img src="photo/google-scholar.svg" alt="" width="16" height="16">Scholar <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/step-out" target="_blank" rel="noopener noreferrer"><img src="photo/GitHub.svg" alt="" width="16" height="16">GitHub <span aria-hidden="true">↗</span></a>
+      </div>
+      <section class="profile-updates" aria-labelledby="profile-news-title">
+        <h2 id="profile-news-title"><a href="#news">News <span aria-hidden="true">↗</span></a></h2>
+        <ul>
+          <li><time datetime="2026-09">SEP 2026</time><a href="https://x.com/HuggingPapers/status/2096875051807109313" target="_blank" rel="noopener noreferrer"><strong>Motion-Omni</strong> featured in Hugging Face Daily Papers <span aria-hidden="true">↗</span></a></li>
+          <li><time datetime="2025-08">AUG 2025</time><a href="https://x.com/_akhaliq/status/1951294484429357323" target="_blank" rel="noopener noreferrer"><strong>C³ Benchmark</strong> shared by AK <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </section>
+      <nav class="section-nav" aria-label="Research profile sections" hidden>
+        <a href="#research-map"><span>01</span>Research directions</a>
+        <a href="#publications"><span>02</span>Selected publications</a>
+        <a href="#experience"><span>03</span>Experience</a>
+        <a href="#projects"><span>04</span>Projects</a>
+        <a href="#recognition"><span>05</span>Honors &amp; awards</a>
+        <a href="#news"><span>06</span>News</a>
+      </nav>
+    </aside>
 
-    <section class="news-section" aria-labelledby="news-title">
+      <section class="guide-stage" aria-label="An animated research trail with a little guide">
+        <div class="guide-viewport">
+          <div class="guide-backdrop" aria-hidden="true"></div>
+          <div id="guide-scene" aria-hidden="true"></div>
+          <div class="journey-signpost">
+            <div class="guide-presence"><span class="presence-dot" aria-hidden="true"></span><span class="journey-mode">Your little guide</span></div>
+            <strong class="journey-destination">Welcome</strong>
+            <span class="journey-status" role="status" aria-live="polite">Explore the research trail.</span>
+            <div class="journey-countdown" hidden><span class="countdown-copy" aria-hidden="true"></span><span class="countdown-track" aria-hidden="true"><span></span></span></div>
+          </div>
+          <div class="guide-play" role="group" aria-label="Interact with the guide" hidden>
+            <button class="greet-guide" type="button" data-guide-action="wave" aria-label="Ask the guide to wave"><span aria-hidden="true">✦</span> Wave</button>
+            <button type="button" data-guide-action="jump" aria-label="Ask the guide to jump"><span aria-hidden="true">↑</span> Jump</button>
+            <button type="button" data-guide-action="dance" aria-label="Ask the guide to dance"><span aria-hidden="true">♪</span> Dance</button>
+          </div>
+          <button class="compact-guide-action" type="button" data-guide-action="wave" aria-label="Ask the guide to wave" hidden><span aria-hidden="true">✦</span> Wave</button>
+        </div>
+      </section>
+
+    <div class="journey-main">
+      <div id="reader" class="reader" role="region" aria-label="Research content">
+        <div class="reader-toolbar" hidden><span class="chapter-counter">STOP 01 / 06</span><button class="reader-close" type="button" aria-label="Return to About"><span aria-hidden="true">←</span> About</button></div>
+        <div class="reader-scroll" tabindex="-1">
+    <section id="news" class="news-section" aria-labelledby="news-title">
       <h2 id="news-title"><span class="status-dot" aria-hidden="true"></span>Latest news</h2>
       <ul class="news-list">
         <li><time datetime="2026-09">SEP 2026</time><p><a href="https://x.com/HuggingPapers/status/2096875051807109313" target="_blank" rel="noopener noreferrer"><strong>Motion-Omni</strong> featured in Hugging Face Daily Papers <span aria-hidden="true">↗</span></a></p></li>
@@ -65,67 +119,33 @@
       </div>
 
       <figure class="research-map" aria-labelledby="research-map-title">
-        <div class="map-canvas">
-          <svg class="map-connections" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
-            <path class="map-world-line" d="M175 260H410"/>
-            <path d="M410 260H550C585 260 585 87 625 87H640M550 260H640M550 260C585 260 585 433 625 433H640"/>
-            <circle cx="550" cy="260" r="4"/>
-          </svg>
-
-          <div class="map-center">
-            <div class="map-core">
-              <span class="map-overline">TOWARDS</span>
-              <h3>Interactive<br>World Models</h3>
-              <span class="map-core-rule" aria-hidden="true"></span>
-              <p><strong>AI4Game</strong></p>
-            </div>
-          </div>
-
-          <div class="map-environment">
-            <p class="map-axis">THE WORLD</p>
-            <a class="map-world-link" href="#omnidrive">
-              <svg class="map-world-art" viewBox="0 0 220 150" fill="none" aria-hidden="true">
-                <path d="M10 114 110 144 210 114 110 84Z" fill="#e6eef9" stroke="#a6bbd7"/>
-                <path d="M31 42 110 20 189 42v66l-79 23-79-23Z" stroke="#6987af" stroke-width="1.5"/>
-                <path d="m31 42 79 23 79-23M110 65v66M31 77l79 23 79-23" stroke="#a6bbd7"/>
-                <path d="m55 101 37-37 18-18 18 18 37 37" stroke="#285ea8" stroke-width="2"/>
-                <path d="m110 100 0-9m0-10v-6m0-9v-4" stroke="#6987af" stroke-width="2"/>
-                <path d="m126 96 5-13 14 4 6 14-1 11-26-8Z" fill="#f7f9fc" stroke="#285ea8" stroke-width="1.7"/>
-                <path d="m131 86 11 3 4 8-18-5" stroke="#285ea8" stroke-width="1.3"/>
-                <circle cx="128" cy="105" r="2" fill="#285ea8"/><circle cx="147" cy="111" r="2" fill="#285ea8"/>
-                <path d="M49 58v24m7-22v16M168 58v24m-7-22v16" stroke="#6987af" stroke-width="2"/>
-                <circle cx="110" cy="20" r="4" fill="#285ea8"/>
-              </svg>
-              <span class="map-node-title">OmniDrive <span aria-hidden="true">↗</span></span>
-              <span class="map-node-subtitle">Dynamic environments</span>
-              <span class="map-node-description">Multi-view driving<br>world modeling</span>
-            </a>
-          </div>
-
-          <div class="map-dialogue">
-            <ul class="map-dialogue-list">
-              <li>
-                <a class="map-node" href="#c3">
-                  <svg class="map-node-art" viewBox="0 0 56 56" fill="none" aria-hidden="true"><circle cx="28" cy="28" r="25" fill="#eaf1fb"/><path d="M12 25v6m6-12v18m7-23v28m7-23v18m7-17v16m6-10v4" stroke="#285ea8" stroke-width="2.5" stroke-linecap="round"/></svg>
-                  <span class="map-node-copy"><span class="map-node-subtitle">Spoken dialogue</span><span class="map-node-title">C<sup>3</sup> <span aria-hidden="true">↗</span></span><span class="map-node-description">Evaluating complex conversations</span></span>
-                </a>
-              </li>
-              <li>
-                <a class="map-node" href="#duplex-mpe">
-                  <svg class="map-node-art" viewBox="0 0 56 56" fill="none" aria-hidden="true"><circle cx="28" cy="28" r="25" fill="#eaf1fb"/><g stroke="#285ea8" stroke-width="1.8" stroke-linecap="round"><circle cx="28" cy="13" r="4"/><circle cx="13" cy="36" r="4"/><circle cx="43" cy="36" r="4"/><path d="M21 24v-3c0-5 14-5 14 0v3M6 47v-3c0-5 14-5 14 0v3m16 0v-3c0-5 14-5 14 0v3M19 28l4-6m10 0 4 6M24 39h8"/></g></svg>
-                  <span class="map-node-copy"><span class="map-node-subtitle">Multi-party interaction</span><span class="map-node-title">Duplex-MPE <span aria-hidden="true">↗</span></span><span class="map-node-description">Evaluating full-duplex group dialogue</span></span>
-                </a>
-              </li>
-              <li>
-                <a class="map-node" href="#motion-omni">
-                  <svg class="map-node-art" viewBox="0 0 56 56" fill="none" aria-hidden="true"><circle cx="28" cy="28" r="25" fill="#eaf1fb"/><g stroke="#285ea8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="28" cy="12" r="4"/><path d="M28 18v17m-8-13h16M20 22l-6 9-5-4m27-5 6-7 5 4M28 35l-8 11m8-11 8 11"/><circle cx="20" cy="22" r="2" fill="#f7f9fc"/><circle cx="36" cy="22" r="2" fill="#f7f9fc"/><circle cx="28" cy="35" r="2" fill="#f7f9fc"/></g></svg>
-                  <span class="map-node-copy"><span class="map-node-subtitle">Digital human embodiment</span><span class="map-node-title">Motion-Omni <span aria-hidden="true">↗</span></span><span class="map-node-description">Giving dialogue a voice and a body</span><span class="map-node-detail">Joint speech &amp; full-body motion</span></span>
-                </a>
-              </li>
-            </ul>
-          </div>
+        <div class="research-goal">
+          <div><span class="map-overline">RESEARCH GOAL</span><h3>Interactive World Models</h3></div>
+          <span class="goal-link" aria-hidden="true">↔</span>
+          <div class="research-testbed"><strong>AI4Game</strong></div>
         </div>
-
+        <div class="research-directions">
+          <a class="research-direction" href="#omnidrive" data-direction="world">
+            <span class="direction-topline"><span>01 / Environments</span><span aria-hidden="true">↗</span></span>
+            <svg class="direction-art" viewBox="0 0 160 48" fill="none" aria-hidden="true"><path d="m20 42 42-35h36l42 35M80 10v7m0 7v6m0 7v5M50 42l23-35m14 0 23 35" stroke="currentColor" stroke-width="1.5"/><path d="M21 18v13M29 14v16M133 14v16M141 18v13" stroke="currentColor" opacity=".45"/><circle class="art-signal" cx="80" cy="10" r="3" fill="currentColor"/></svg>
+            <h3>OmniDrive</h3><p>Multi-view driving world modeling</p>
+          </a>
+          <a class="research-direction" href="#c3" data-direction="dialogue">
+            <span class="direction-topline"><span>02 / Spoken dialogue</span><span aria-hidden="true">↗</span></span>
+            <svg class="direction-art" viewBox="0 0 160 48" fill="none" aria-hidden="true"><g class="audio-bars" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M32 21v6M44 14v20M56 8v32M68 16v16M80 4v40M92 12v24M104 17v14M116 10v28M128 21v6"/></g></svg>
+            <h3>C<sup>3</sup></h3><p>Evaluating complex conversations</p>
+          </a>
+          <a class="research-direction" href="#duplex-mpe" data-direction="interaction">
+            <span class="direction-topline"><span>03 / Multi-party interaction</span><span aria-hidden="true">↗</span></span>
+            <svg class="direction-art" viewBox="0 0 160 48" fill="none" aria-hidden="true"><path class="conversation-flow" d="m49 33 31-24 31 24H49Z" stroke="currentColor" stroke-dasharray="3 5"/><g fill="var(--page)" stroke="currentColor" stroke-width="1.5"><circle cx="49" cy="33" r="8"/><circle cx="80" cy="9" r="8"/><circle cx="111" cy="33" r="8"/></g><circle class="art-signal" cx="80" cy="9" r="3" fill="currentColor"/></svg>
+            <h3>Duplex-MPE</h3><p>Full-duplex group dialogue</p>
+          </a>
+          <a class="research-direction" href="#motion-omni" data-direction="embodiment">
+            <span class="direction-topline"><span>04 / Digital embodiment</span><span aria-hidden="true">↗</span></span>
+            <svg class="direction-art" viewBox="0 0 160 48" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="80" cy="7" r="5"/><path d="M80 14v17m-11-12h22M69 19l-8 11-6-4m36-7 8-10 7 5M80 31 68 44m12-13 12 13"/><g class="embodiment-voice"><path d="M29 19v10m8-16v22"/><path d="M123 13v22m8-16v10"/></g></g></svg>
+            <h3>Motion-Omni</h3><p>Joint speech &amp; full-body motion</p>
+          </a>
+        </div>
       </figure>
     </section>
 
@@ -292,7 +312,7 @@
     <section id="recognition" class="section-layout recognition-section" aria-labelledby="recognition-title">
       <div class="section-heading">
         <p class="section-index">05 / RECOGNITION</p>
-        <h2 id="recognition-title">Honors &amp;<br>awards<span class="heading-dot">.</span></h2>
+        <h2 id="recognition-title">Honors &amp; <br>awards<span class="heading-dot">.</span></h2>
       </div>
       <div class="section-content awards-grid">
         <div class="award-column"><h3>Academic honors</h3>
@@ -306,22 +326,40 @@
           <ul class="award-list">
             <li><div><h4>Huawei ICT Competition</h4><p>1st place, China Area <span class="award-distinction">Top 0.1%</span></p></div><span class="award-year">2024</span></li>
             <li><div><h4>COMAP's MCM &amp; ICM</h4><p>Meritorious Winner <span class="award-distinction">Top 5%</span></p></div><span class="award-year">2023</span></li>
-            <li><div><h4>China Collegiate Programming Contest</h4><p>CCPC Regional · Silver Medal</p></div><span class="award-year">2023</span></li>
+            <li><div><h4>China Collegiate Programming Contest</h4><p>CCPC · National Silver Medal</p></div><span class="award-year">2023</span></li>
           </ul>
         </div>
       </div>
     </section>
 
+
+        </div>
+        <div class="chapter-navigation"><button class="previous-stop" type="button"><span aria-hidden="true">←</span> <span>About</span></button><button class="next-stop" type="button"><span>Next: Papers</span> <span aria-hidden="true">→</span></button></div>
+      </div>
+    </div>
+  </main>
+
+  <nav class="journey-route" aria-label="Journey stops" hidden>
+    <div class="route-track">
+      <span class="route-line" aria-hidden="true"></span><span class="route-progress" aria-hidden="true"></span>
+      <span class="route-traveler" aria-hidden="true"><canvas class="route-robot" width="128" height="128"></canvas></span>
+      <a href="#about"><span class="route-dot"></span><span>About</span></a>
+      <a href="#research-map"><span class="route-dot"></span><span>Research</span></a>
+      <a href="#publications"><span class="route-dot"></span><span>Papers</span></a>
+      <a href="#experience" aria-label="Experience"><span class="route-dot"></span><span class="route-label-long" aria-hidden="true">Experience</span><span class="route-label-short" aria-hidden="true">Career</span></a>
+      <a href="#projects"><span class="route-dot"></span><span>Projects</span></a>
+      <a href="#recognition"><span class="route-dot"></span><span>Honors</span></a>
+      <a href="#news"><span class="route-dot"></span><span>News</span></a>
+    </div>
+  </nav>
+
+  <div class="site-bottom">
     <!-- Visitor Counter (FlagCounter) -->
     <div class="flex justify-center mb-8">
       <a href="https://info.flagcounter.com/ojTG"><img src="https://s01.flagcounter.com/count/ojTG/bg_DFEEFF/txt_000000/border_1400CC/columns_3/maxflags_9/viewers_0/labels_0/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
     </div>
-
-    <footer class="site-footer">
-      <p>© 2026 <span lang="zh-CN">马承乾</span> · Chengqian Ma</p>
-      <p>Towards interactive world models, through AI4Game.</p>
-      <a href="#about">Back to top <span aria-hidden="true">↑</span></a>
-    </footer>
-  </main>
+    <footer class="site-footer"><p>© 2026 Chengqian Ma <span lang="zh-CN">· 马承乾</span></p><p>Interactive World Models · AI4Game</p><div class="footer-links"><a href="#asset-credits">Art credits</a><a href="mailto:chengqianma@yeah.net">Say hello <span aria-hidden="true">↗</span></a></div></footer>
+    <details id="asset-credits" class="asset-credits"><summary>Artwork credits</summary><p>RobotExpressive by <a href="https://quaternius.com/packs/animatedrobot.html" target="_blank" rel="noopener noreferrer">Quaternius · Tomás Laulhé</a>, adapted by Don McCurdy, under CC0. Blue-and-ivory materials and animation direction adapted for this site. Nature models by <a href="https://quaternius.com/packs/ultimatestylizednature.html" target="_blank" rel="noopener noreferrer">Quaternius</a> and <a href="https://kenney.nl/assets/nature-kit" target="_blank" rel="noopener noreferrer">Kenney</a>, under CC0. Rendered with Three.js (MIT). <a href="assets/world/SOURCES.md">Model sources and licenses</a>. Garden architecture, terrain and camera routes are original to this site.</p></details>
+  </div>
 </body>
 </html>

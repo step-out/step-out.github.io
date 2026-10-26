@@ -1,0 +1,7 @@
+Quaternius — Ultimate Stylized Nature Pack
+License: Creative Commons CC0 1.0 Universal
+Official source: https://quaternius.com/packs/ultimatestylizednature.html
+Download folder linked by official page: https://drive.google.com/drive/folders/1IV3bXHzkNvuNWFHPi4KPx-G4ghuxIuT-
+https://creativecommons.org/publicdomain/zero/1.0/
+
+Web derivative: texture dimensions reduced to 512 px; glTF and external buffers/images packed into standalone GLB. Alpha foliage uses MASK at 0.42 to avoid depth sorting artifacts; roughness adjusted to 0.88. Geometry unchanged.
