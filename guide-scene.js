@@ -18,7 +18,7 @@ async function createGuide(container) {
   const departureDuration = .25, walkingDuration = 1.65, arrivalDuration = .30;
   const journeyDuration = departureDuration + walkingDuration + arrivalDuration;
   let characterArea = null, hoverTime = -10, actionState = '', activeAtlas = 'base';
-  let exhibit = 'duplex-mpe';
+  let exhibit = 'vivid';
   let renderedPose = null, poseState = '';
   const stops = [
     ['about', 'Welcome', 'A little journey'], ['research-map', 'Research', 'Ideas & directions'],
@@ -47,7 +47,7 @@ async function createGuide(container) {
   const { sprite } = baseAtlas;
   // Familiar work appears in the scenery. These optional local images never delay the guide.
   const artwork = {};
-  for (const [key, file] of Object.entries({'omnidrive': 'omnidrive', 'motion-omni': 'MotionOmni', 'duplex-mpe': 'DuplexMPE', c3: 'C3', pku: 'pku', seed: 'seed'})) {
+  for (const [key, file] of Object.entries({vivid: 'VIVID', 'omnidrive': 'omnidrive', 'motion-omni': 'MotionOmni', 'duplex-mpe': 'DuplexMPE', c3: 'C3', pku: 'pku', seed: 'seed'})) {
     const image = new Image(); image.decoding = 'async';
     image.onload = () => { artwork[key] = image; request(); };
     image.src = new URL(`./photo/optimized/${file}.webp`, import.meta.url).href;
@@ -158,7 +158,7 @@ async function createGuide(container) {
     }else if(stop.id==='research-map'){
       path(p=>{p.moveTo(-46,3);p.lineTo(-29,-109);p.moveTo(46,3);p.lineTo(29,-109);},null,wood,6);
       rounded(-67,-113,134,87,5,'#d3d9d3');rounded(-62,-108,124,77,3,paper,'#b9c9cd');
-      if(!art('omnidrive',-58,-104,116,69)){
+      if(!art('vivid',-58,-104,116,69)){
         const dots=[[-39,-69],[-9,-87],[17,-59],[41,-88],[39,-44]];
         path(p=>{p.moveTo(...dots[0]);p.lineTo(...dots[1]);p.lineTo(...dots[2]);p.lineTo(...dots[3]);p.moveTo(...dots[2]);p.lineTo(...dots[4]);},null,'#a1b8d5',1.5);
         dots.forEach(([a,b],i)=>ellipse(a,b,5,5,i===Math.floor(time/1.2)%5?'#678ec1':'#adc6de'));
@@ -452,7 +452,7 @@ async function createGuide(container) {
   window.addEventListener('scene:visibility',event=>{visible=Boolean(event.detail?.visible);cancel();request();});
   window.addEventListener('scene:focus',event=>{focus=event.detail?.id||null;request();});
   window.addEventListener('scene:exhibit',event=>{
-    if(['duplex-mpe','motion-omni','omnidrive','c3'].includes(event.detail?.id)){exhibit=event.detail.id;request();}
+    if(['vivid','duplex-mpe','motion-omni','omnidrive','c3'].includes(event.detail?.id)){exhibit=event.detail.id;request();}
   });
   window.addEventListener('guide:greet',()=>interact('wave'));
   window.addEventListener('guide:activity',event=>{
