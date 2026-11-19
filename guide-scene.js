@@ -18,7 +18,7 @@ async function createGuide(container) {
   const departureDuration = .25, walkingDuration = 1.65, arrivalDuration = .30;
   const journeyDuration = departureDuration + walkingDuration + arrivalDuration;
   let characterArea = null, hoverTime = -10, actionState = '', activeAtlas = 'base';
-  let exhibit = 'vivid';
+  let exhibit = 'nativeseg';
   let renderedPose = null, poseState = '';
   const stops = [
     ['about', 'Welcome', 'A little journey'], ['research-map', 'Research', 'Ideas & directions'],
@@ -47,7 +47,7 @@ async function createGuide(container) {
   const { sprite } = baseAtlas;
   // Familiar work appears in the scenery. These optional local images never delay the guide.
   const artwork = {};
-  for (const [key, file] of Object.entries({vivid: 'VIVID', 'omnidrive': 'omnidrive', 'motion-omni': 'MotionOmni', 'duplex-mpe': 'DuplexMPE', c3: 'C3', pku: 'pku', seed: 'seed'})) {
+  for (const [key, file] of Object.entries({nativeseg: 'NativeSeg', vivid: 'VIVID', 'omnidrive': 'omnidrive', 'motion-omni': 'MotionOmni', 'duplex-mpe': 'DuplexMPE', c3: 'C3', pku: 'pku', seed: 'seed'})) {
     const image = new Image(); image.decoding = 'async';
     image.onload = () => { artwork[key] = image; request(); };
     image.src = new URL(`./photo/optimized/${file}.webp`, import.meta.url).href;
@@ -452,7 +452,7 @@ async function createGuide(container) {
   window.addEventListener('scene:visibility',event=>{visible=Boolean(event.detail?.visible);cancel();request();});
   window.addEventListener('scene:focus',event=>{focus=event.detail?.id||null;request();});
   window.addEventListener('scene:exhibit',event=>{
-    if(['vivid','duplex-mpe','motion-omni','omnidrive','c3'].includes(event.detail?.id)){exhibit=event.detail.id;request();}
+    if(['nativeseg','vivid','duplex-mpe','motion-omni','omnidrive','c3'].includes(event.detail?.id)){exhibit=event.detail.id;request();}
   });
   window.addEventListener('guide:greet',()=>interact('wave'));
   window.addEventListener('guide:activity',event=>{

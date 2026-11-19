@@ -16,7 +16,7 @@ async function createWorld() {
   let booted=false;
   // Count complete resources, not bytes or an elapsed-time estimate. The final
   // milestone is GPU preparation; the loading screen waits for a rendered frame.
-  const loadTotal=15;let loadCount=0;
+  const loadTotal=16;let loadCount=0;
   function loading(stage,resource){window.dispatchEvent(new CustomEvent('scene:load-progress',{detail:{loaded:loadCount,total:loadTotal,stage,resource}}));}
   async function tracked(resource,load){try{return await load();}finally{loadCount++;loading('assets',resource);}}
   loading('initializing');
@@ -87,13 +87,13 @@ async function createWorld() {
   const resources=modelJobs.map(([name,locations])=>tracked(name,async()=>{const model=await loadModel(name);if(name.startsWith('Birch'))model.traverse(m=>{if(m.isMesh&&m.material.map){m.material=m.material.clone();m.material.roughness=.92;}});locations.forEach(a=>{const o=instance(model,...a);if(name.startsWith('Birch'))trees.push(o);});}));
   const characterJob=tracked('guide',async()=>{const result=await createCharacter(loader);await prepareModel(result.root);return result;});resources.push(characterJob);
   const textures={},textureLoader=new THREE.TextureLoader();
-  for(const[id,file]of Object.entries({vivid:'VIVID','duplex-mpe':'DuplexMPE','motion-omni':'MotionOmni',omnidrive:'omnidrive',c3:'C3'}))resources.push(tracked(id,async()=>{const texture=await textureLoader.loadAsync(`./photo/optimized/${file}.webp`);texture.colorSpace=THREE.SRGBColorSpace;await prepareTexture(texture);textures[id]=texture;}));
+  for(const[id,file]of Object.entries({nativeseg:'NativeSeg',vivid:'VIVID','duplex-mpe':'DuplexMPE','motion-omni':'MotionOmni',omnidrive:'omnidrive',c3:'C3'}))resources.push(tracked(id,async()=>{const texture=await textureLoader.loadAsync(`./photo/optimized/${file}.webp`);texture.colorSpace=THREE.SRGBColorSpace;await prepareTexture(texture);textures[id]=texture;}));
   const results=await Promise.allSettled(resources),failed=results.find(result=>result.status==='rejected');
   if(failed)throw new Error('A scene asset could not load. Please reload to try again.',{cause:failed.reason});
   const modelsLoaded=true,character=await characterJob;
   const guide=character.root;world.add(guide);
   const shadow=mesh(new THREE.CircleGeometry(.54,32),new THREE.MeshBasicMaterial({color:0x2d4358,transparent:true,opacity:.13,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=.237;shadow.castShadow=false;
-  let exhibit='vivid';function updateExhibit(){if(textures[exhibit])exhibits.forEach(p=>{p.material.map=textures[exhibit];p.material.needsUpdate=true;});}
+  let exhibit='nativeseg';function updateExhibit(){if(textures[exhibit])exhibits.forEach(p=>{p.material.map=textures[exhibit];p.material.needsUpdate=true;});}
   let width=1,height=1,time=0,frames=0,last=0,raf=0,index=0,targetIndex=0,progress=0,from=0,travelTime=0,travelling=false,travelGoal=0,travelDuration=2.65,sideStep=.82;
   let motion=!reduced.matches&&!document.body.classList.contains('motion-paused'),visible=!document.hidden,action='wave',actionTime=0,cycle=0,idleUntil=2.5,ready=false;
   let orbit=0,orbitTarget=0,pitch=0,pitchTarget=0,drag=null,lastAction='',hoveredStop=null;
