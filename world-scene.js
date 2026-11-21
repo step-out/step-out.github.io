@@ -87,7 +87,7 @@ async function createWorld() {
   const resources=modelJobs.map(([name,locations])=>tracked(name,async()=>{const model=await loadModel(name);if(name.startsWith('Birch'))model.traverse(m=>{if(m.isMesh&&m.material.map){m.material=m.material.clone();m.material.roughness=.92;}});locations.forEach(a=>{const o=instance(model,...a);if(name.startsWith('Birch'))trees.push(o);});}));
   const characterJob=tracked('guide',async()=>{const result=await createCharacter(loader);await prepareModel(result.root);return result;});resources.push(characterJob);
   const textures={},textureLoader=new THREE.TextureLoader();
-  for(const[id,file]of Object.entries({nativeseg:'NativeSeg',vivid:'VIVID','duplex-mpe':'DuplexMPE','motion-omni':'MotionOmni',omnidrive:'omnidrive',c3:'C3'}))resources.push(tracked(id,async()=>{const texture=await textureLoader.loadAsync(`./photo/optimized/${file}.webp`);texture.colorSpace=THREE.SRGBColorSpace;await prepareTexture(texture);textures[id]=texture;}));
+  for(const[id,file]of Object.entries({nativeseg:'NativeSeg',vivid:'VIVID','duplex-mpe':'DuplexMPE?v=2','motion-omni':'MotionOmni?v=2',omnidrive:'omnidrive',c3:'C3'}))resources.push(tracked(id,async()=>{const[name,q]=file.split('?');const texture=await textureLoader.loadAsync(`./photo/optimized/${name}.webp${q?`?${q}`:''}`);texture.colorSpace=THREE.SRGBColorSpace;await prepareTexture(texture);textures[id]=texture;}));
   const results=await Promise.allSettled(resources),failed=results.find(result=>result.status==='rejected');
   if(failed)throw new Error('A scene asset could not load. Please reload to try again.',{cause:failed.reason});
   const modelsLoaded=true,character=await characterJob;

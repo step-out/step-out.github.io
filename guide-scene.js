@@ -47,10 +47,10 @@ async function createGuide(container) {
   const { sprite } = baseAtlas;
   // Familiar work appears in the scenery. These optional local images never delay the guide.
   const artwork = {};
-  for (const [key, file] of Object.entries({nativeseg: 'NativeSeg', vivid: 'VIVID', 'omnidrive': 'omnidrive', 'motion-omni': 'MotionOmni', 'duplex-mpe': 'DuplexMPE', c3: 'C3', pku: 'pku', seed: 'seed'})) {
+  for (const [key, file] of Object.entries({nativeseg: 'NativeSeg', vivid: 'VIVID', 'omnidrive': 'omnidrive', 'motion-omni': 'MotionOmni.webp?v=2', 'duplex-mpe': 'DuplexMPE.webp?v=2', c3: 'C3', pku: 'pku', seed: 'seed'})) {
     const image = new Image(); image.decoding = 'async';
     image.onload = () => { artwork[key] = image; request(); };
-    image.src = new URL(`./photo/optimized/${file}.webp`, import.meta.url).href;
+    image.src = new URL(`./photo/optimized/${file.includes('.') ? file : `${file}.webp`}`, import.meta.url).href;
   }
   for (const file of ['tree','tree-round','shrub','daisies','cloud']) {
     const image = new Image(); image.decoding = 'async';
